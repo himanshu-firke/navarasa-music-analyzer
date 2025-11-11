@@ -61,6 +61,54 @@ const Results = () => {
     }
   }
 
+  const handleShare = async () => {
+    if (!analysis) return
+
+    const primaryEmotion = getPrimaryEmotion(analysis.emotions)
+    const primaryRasa = NAVARASAS[primaryEmotion]
+    const shareUrl = window.location.href
+    const shareText = `🎵 My music analysis results: ${primaryRasa.emoji} ${primaryRasa.name} (${formatConfidence(analysis.confidence)}) - Navarasa Music Emotion Analyzer`
+
+    // Check if Web Share API is available (mobile devices)
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'Navarasa Music Analysis Results',
+          text: shareText,
+          url: shareUrl
+        })
+      } catch (error) {
+        // User cancelled or share failed
+        if (error.name !== 'AbortError') {
+          console.error('Share failed:', error)
+          fallbackCopyToClipboard(shareUrl, shareText)
+        }
+      }
+    } else {
+      // Fallback: Copy to clipboard
+      fallbackCopyToClipboard(shareUrl, shareText)
+    }
+  }
+
+  const fallbackCopyToClipboard = (url, text) => {
+    const fullText = `${text}\n${url}`
+    
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(fullText)
+        .then(() => {
+          alert('✅ Link copied to clipboard! You can now share it.')
+        })
+        .catch(err => {
+          console.error('Failed to copy:', err)
+          // Last resort: show alert with text to copy manually
+          prompt('Copy this link to share:', fullText)
+        })
+    } else {
+      // Fallback for older browsers
+      prompt('Copy this link to share:', fullText)
+    }
+  }
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -247,7 +295,10 @@ const Results = () => {
               </>
             )}
           </button>
-          <button className="px-5 sm:px-6 py-2.5 sm:py-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-white border-2 border-gray-300 dark:border-gray-700 rounded-lg font-semibold hover:scale-105 transition-transform flex items-center justify-center space-x-2 text-sm sm:text-base">
+          <button 
+            onClick={handleShare}
+            className="px-5 sm:px-6 py-2.5 sm:py-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-white border-2 border-gray-300 dark:border-gray-700 rounded-lg font-semibold hover:scale-105 transition-transform flex items-center justify-center space-x-2 text-sm sm:text-base"
+          >
             <Share2 className="w-5 h-5" />
             <span>Share</span>
           </button>
