@@ -131,22 +131,22 @@ const Results = () => {
             <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
               Emotion Distribution
             </h2>
-            <ResponsiveContainer width="100%" height={300} className="sm:h-[380px]">
+            <ResponsiveContainer width="100%" height={320}>
               <PieChart>
                 <Pie
                   data={chartData}
                   cx="50%"
-                  cy="45%"
+                  cy="40%"
                   labelLine={false}
                   label={(entry) => {
                     // Only show label if percentage is >= 8% on mobile, 5% on desktop
-                    const threshold = window.innerWidth < 640 ? 8 : 5
+                    const threshold = window.innerWidth < 640 ? 10 : 5
                     if (entry.value >= threshold) {
                       return window.innerWidth < 640 ? `${entry.percentage}%` : `${entry.name}: ${entry.percentage}%`
                     }
                     return ''
                   }}
-                  outerRadius={window.innerWidth < 640 ? 80 : 110}
+                  outerRadius={window.innerWidth < 640 ? 75 : 110}
                   fill="#8884d8"
                   dataKey="value"
                 >
@@ -166,8 +166,9 @@ const Results = () => {
                 <Legend 
                   verticalAlign="bottom" 
                   height={50}
-                  wrapperStyle={{ paddingTop: '20px', fontSize: window.innerWidth < 640 ? '11px' : '14px' }}
-                  formatter={(value, entry) => window.innerWidth < 640 ? `${value.substring(0, 8)}` : `${value}: ${entry.payload.percentage}%`}
+                  wrapperStyle={{ paddingTop: '15px', fontSize: '10px' }}
+                  iconSize={8}
+                  formatter={(value, entry) => window.innerWidth < 640 ? `${value.substring(0, 7)}` : `${value}: ${entry.payload.percentage}%`}
                 />
               </PieChart>
             </ResponsiveContainer>
@@ -183,19 +184,20 @@ const Results = () => {
             <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
               All Emotions
             </h2>
-            <ResponsiveContainer width="100%" height={300} className="sm:h-[380px]">
-              <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 80 }}>
+            <ResponsiveContainer width="100%" height={320}>
+              <BarChart data={chartData} margin={{ top: 10, right: 10, left: -10, bottom: 70 }}>
                 <XAxis 
                   dataKey="name" 
                   angle={-45} 
                   textAnchor="end" 
-                  height={90}
-                  style={{ fontSize: window.innerWidth < 640 ? '10px' : '12px' }}
+                  height={80}
+                  style={{ fontSize: '10px' }}
                   interval={0}
                 />
                 <YAxis 
-                  label={{ value: 'Percentage (%)', angle: -90, position: 'insideLeft' }}
-                  domain={[0, 20]}
+                  style={{ fontSize: '10px' }}
+                  width={30}
+                  domain={[0, 'auto']}
                 />
                 <Tooltip 
                   formatter={(value) => `${value}%`}
@@ -211,6 +213,10 @@ const Results = () => {
                     <Cell key={`cell-${index}`} fill={entry.color} />
                   ))}
                 </Bar>
+                <Legend 
+                  wrapperStyle={{ fontSize: '10px', paddingTop: '10px' }}
+                  iconSize={8}
+                />
               </BarChart>
             </ResponsiveContainer>
           </motion.div>

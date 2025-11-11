@@ -139,11 +139,11 @@ const Analyze = () => {
                   : 'border-gray-300 dark:border-gray-700 hover:border-pink-400'
               }`}
             >
-              <Upload className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 text-gray-400" />
-              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2">
+              <Upload className="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 mx-auto mb-2 sm:mb-3 md:mb-4 text-gray-400" />
+              <h3 className="text-base sm:text-lg md:text-xl font-semibold text-gray-900 dark:text-white mb-1.5 sm:mb-2">
                 Drop your audio file here
               </h3>
-              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4">
+              <p className="text-xs sm:text-sm md:text-base text-gray-600 dark:text-gray-400 mb-3 sm:mb-4">
                 or click to browse
               </p>
               <input
@@ -155,12 +155,12 @@ const Analyze = () => {
               />
               <label
                 htmlFor="file-upload"
-                className="inline-block px-5 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg font-semibold cursor-pointer hover:scale-105 transition-transform text-sm sm:text-base"
+                className="inline-block px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg font-semibold cursor-pointer hover:scale-105 transition-transform text-xs sm:text-sm md:text-base"
               >
                 Choose File
               </label>
-              <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-500 mt-3 sm:mt-4 px-2">
-                Supported formats: MP3, WAV, FLAC, OGG (Max 10MB)
+              <p className="text-[10px] sm:text-xs md:text-sm text-gray-500 dark:text-gray-500 mt-2 sm:mt-3 md:mt-4 px-2">
+                MP3, WAV, FLAC, OGG (Max 10MB)
               </p>
             </div>
           ) : (

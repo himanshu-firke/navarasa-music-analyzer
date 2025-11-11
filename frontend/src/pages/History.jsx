@@ -211,15 +211,15 @@ const History = () => {
                       <div className="flex gap-2">
                         <button
                           onClick={() => handleView(analysis._id)}
-                          className="flex-1 flex items-center justify-center px-3 sm:px-4 py-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all text-xs sm:text-sm"
+                          className="flex-1 flex items-center justify-center px-3 sm:px-4 py-2.5 sm:py-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all text-xs sm:text-sm active:scale-95"
                         >
-                          <Eye className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+                          <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
                           View
                         </button>
                         <button
                           onClick={() => handleDelete(analysis._id)}
                           disabled={deleting === analysis._id}
-                          className="px-3 sm:px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors disabled:opacity-50"
+                          className="px-3 sm:px-4 py-2.5 sm:py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors disabled:opacity-50 active:scale-95 min-w-[44px]"
                         >
                           {deleting === analysis._id ? (
                             <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>

@@ -54,7 +54,7 @@ const Compare = () => {
   // Prepare radar chart data
   const radarData = Object.keys(NAVARASAS).map(emotion => {
     const dataPoint = {
-      emotion: NAVARASAS[emotion].name.substring(0, 10)
+      emotion: NAVARASAS[emotion].name.substring(0, 8)
     }
     
     selectedAnalyses.forEach((analysis, idx) => {
@@ -68,11 +68,11 @@ const Compare = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12 px-4">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8 sm:py-12 px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-12 text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-pink-500 mx-auto mb-4"></div>
-            <p className="text-gray-600 dark:text-gray-400">Loading analyses...</p>
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 sm:p-12 text-center">
+            <div className="animate-spin rounded-full h-10 w-10 sm:h-12 sm:w-12 border-b-2 border-pink-500 mx-auto mb-3 sm:mb-4"></div>
+            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">Loading analyses...</p>
           </div>
         </div>
       </div>
@@ -92,12 +92,12 @@ const Compare = () => {
         </div>
 
         {analyses.length === 0 ? (
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-12 text-center">
-            <Music2 className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-            <p className="text-gray-600 dark:text-gray-400 text-lg mb-4">
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 sm:p-12 text-center">
+            <Music2 className="w-12 h-12 sm:w-16 sm:h-16 text-gray-400 mx-auto mb-3 sm:mb-4" />
+            <p className="text-gray-600 dark:text-gray-400 text-base sm:text-lg mb-3 sm:mb-4">
               No analyses available
             </p>
-            <p className="text-gray-500 dark:text-gray-500">
+            <p className="text-sm sm:text-base text-gray-500 dark:text-gray-500">
               Analyze some songs first to enable comparison
             </p>
           </div>
@@ -202,18 +202,22 @@ const Compare = () => {
                     <h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
                       Emotion Distribution Comparison
                     </h2>
-                    <ResponsiveContainer width="100%" height={300} className="sm:h-[400px]">
-                      <BarChart data={comparisonData}>
+                    <ResponsiveContainer width="100%" height={350}>
+                      <BarChart data={comparisonData} margin={{ top: 10, right: 10, left: -10, bottom: 60 }}>
                         <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
                         <XAxis 
                           dataKey="emotion" 
                           stroke="#9ca3af"
-                          tick={{ fill: '#9ca3af' }}
+                          tick={{ fill: '#9ca3af', fontSize: 10 }}
+                          angle={-45}
+                          textAnchor="end"
+                          height={80}
+                          interval={0}
                         />
                         <YAxis 
                           stroke="#9ca3af"
-                          tick={{ fill: '#9ca3af' }}
-                          label={{ value: 'Percentage (%)', angle: -90, position: 'insideLeft', fill: '#9ca3af' }}
+                          tick={{ fill: '#9ca3af', fontSize: 10 }}
+                          width={30}
                         />
                         <Tooltip 
                           contentStyle={{ 
@@ -223,13 +227,17 @@ const Compare = () => {
                             color: '#fff'
                           }}
                         />
-                        <Legend />
+                        <Legend 
+                          wrapperStyle={{ fontSize: '11px' }}
+                          iconSize={10}
+                        />
                         {selectedAnalyses.map((analysis, idx) => (
                           <Bar 
                             key={idx}
                             dataKey={`song${idx + 1}`}
                             fill={colors[idx]}
-                            name={`Song ${idx + 1}: ${analysis.filename.substring(0, 20)}`}
+                            name={`Song ${idx + 1}`}
+                            radius={[4, 4, 0, 0]}
                           />
                         ))}
                       </BarChart>
@@ -241,17 +249,18 @@ const Compare = () => {
                     <h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
                       Emotional Profile Radar
                     </h2>
-                    <ResponsiveContainer width="100%" height={300} className="sm:h-[400px]">
+                    <ResponsiveContainer width="100%" height={350}>
                       <RadarChart data={radarData}>
                         <PolarGrid stroke="#374151" />
                         <PolarAngleAxis 
                           dataKey="emotion"
                           stroke="#9ca3af"
-                          tick={{ fill: '#9ca3af', fontSize: 12 }}
+                          tick={{ fill: '#9ca3af', fontSize: 9 }}
                         />
                         <PolarRadiusAxis 
                           stroke="#9ca3af"
-                          tick={{ fill: '#9ca3af' }}
+                          tick={{ fill: '#9ca3af', fontSize: 9 }}
+                          angle={90}
                         />
                         {selectedAnalyses.map((analysis, idx) => (
                           <Radar
@@ -263,7 +272,10 @@ const Compare = () => {
                             fillOpacity={0.3}
                           />
                         ))}
-                        <Legend />
+                        <Legend 
+                          wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }}
+                          iconSize={10}
+                        />
                       </RadarChart>
                     </ResponsiveContainer>
                   </div>
