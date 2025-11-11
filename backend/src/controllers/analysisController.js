@@ -38,17 +38,20 @@ exports.analyzeAudio = async (req, res) => {
     try {
       mlResponse = await axios.post(`${mlServiceUrl}/predict`, formData, {
         headers: formData.getHeaders(),
-        timeout: 60000, // 60 seconds
+        timeout: 120000, // 120 seconds (for cold starts on free tier)
+        maxContentLength: Infinity,
+        maxBodyLength: Infinity
       })
     } catch (mlError) {
       console.error('ML Service error:', mlError.message)
       console.error('ML Service full error:', mlError.response?.data || mlError)
       
       // Return error instead of mock data
-      return res.status(500).json({
+      return res.status(503).json({
         success: false,
-        message: 'ML service is unavailable. Please make sure the ML service is running on port 8000.',
-        error: mlError.message
+        message: 'ML service is currently waking up (cold start). Please wait a moment and try again.',
+        error: mlError.message,
+        hint: 'Free tier services sleep after inactivity. The service is starting up now.'
       })
     }
 
