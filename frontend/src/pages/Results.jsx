@@ -82,7 +82,8 @@ const Results = () => {
   
   // Convert chart data to numbers (not strings) for proper rendering
   const chartData = Object.entries(analysis.emotions).map(([key, value]) => ({
-    name: NAVARASAS[key].name,
+    name: NAVARASAS[key].name.substring(0, 6), // Shorten for mobile
+    fullName: NAVARASAS[key].name,
     value: parseFloat((value * 100).toFixed(1)), // Convert to number
     percentage: (value * 100).toFixed(1), // Keep as string for display
     color: NAVARASAS[key].color,
@@ -131,22 +132,22 @@ const Results = () => {
             <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
               Emotion Distribution
             </h2>
-            <ResponsiveContainer width="100%" height={320}>
+            <ResponsiveContainer width="100%" height={340}>
               <PieChart>
                 <Pie
                   data={chartData}
                   cx="50%"
-                  cy="40%"
+                  cy="38%"
                   labelLine={false}
                   label={(entry) => {
-                    // Only show label if percentage is >= 8% on mobile, 5% on desktop
-                    const threshold = window.innerWidth < 640 ? 10 : 5
+                    // Only show label if percentage is >= 12% on mobile
+                    const threshold = window.innerWidth < 640 ? 12 : 8
                     if (entry.value >= threshold) {
                       return window.innerWidth < 640 ? `${entry.percentage}%` : `${entry.name}: ${entry.percentage}%`
                     }
                     return ''
                   }}
-                  outerRadius={window.innerWidth < 640 ? 75 : 110}
+                  outerRadius={window.innerWidth < 640 ? 70 : 110}
                   fill="#8884d8"
                   dataKey="value"
                 >
@@ -165,10 +166,10 @@ const Results = () => {
                 />
                 <Legend 
                   verticalAlign="bottom" 
-                  height={50}
-                  wrapperStyle={{ paddingTop: '15px', fontSize: '10px' }}
-                  iconSize={8}
-                  formatter={(value, entry) => window.innerWidth < 640 ? `${value.substring(0, 7)}` : `${value}: ${entry.payload.percentage}%`}
+                  height={60}
+                  wrapperStyle={{ paddingTop: '20px', fontSize: '9px', lineHeight: '1.4' }}
+                  iconSize={7}
+                  formatter={(value, entry) => window.innerWidth < 640 ? `${value}` : `${value}: ${entry.payload.percentage}%`}
                 />
               </PieChart>
             </ResponsiveContainer>
@@ -184,19 +185,19 @@ const Results = () => {
             <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
               All Emotions
             </h2>
-            <ResponsiveContainer width="100%" height={320}>
-              <BarChart data={chartData} margin={{ top: 10, right: 10, left: -10, bottom: 70 }}>
+            <ResponsiveContainer width="100%" height={350}>
+              <BarChart data={chartData} margin={{ top: 15, right: 10, left: 0, bottom: 85 }}>
                 <XAxis 
                   dataKey="name" 
-                  angle={-45} 
+                  angle={-50} 
                   textAnchor="end" 
-                  height={80}
-                  style={{ fontSize: '10px' }}
+                  height={90}
+                  style={{ fontSize: '9px' }}
                   interval={0}
                 />
                 <YAxis 
-                  style={{ fontSize: '10px' }}
-                  width={30}
+                  style={{ fontSize: '9px' }}
+                  width={32}
                   domain={[0, 'auto']}
                 />
                 <Tooltip 
@@ -214,8 +215,8 @@ const Results = () => {
                   ))}
                 </Bar>
                 <Legend 
-                  wrapperStyle={{ fontSize: '10px', paddingTop: '10px' }}
-                  iconSize={8}
+                  wrapperStyle={{ fontSize: '9px', paddingTop: '12px', lineHeight: '1.4' }}
+                  iconSize={7}
                 />
               </BarChart>
             </ResponsiveContainer>

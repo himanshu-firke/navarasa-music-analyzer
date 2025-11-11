@@ -40,7 +40,7 @@ const Compare = () => {
   // Prepare comparison data for bar chart
   const comparisonData = Object.keys(NAVARASAS).map(emotion => {
     const dataPoint = {
-      emotion: NAVARASAS[emotion].name,
+      emotion: NAVARASAS[emotion].name.substring(0, 6), // Shorten to 6 chars for mobile
       emoji: NAVARASAS[emotion].emoji
     }
     
@@ -54,7 +54,7 @@ const Compare = () => {
   // Prepare radar chart data
   const radarData = Object.keys(NAVARASAS).map(emotion => {
     const dataPoint = {
-      emotion: NAVARASAS[emotion].name.substring(0, 8)
+      emotion: NAVARASAS[emotion].name.substring(0, 5) // Shorten to 5 chars for mobile
     }
     
     selectedAnalyses.forEach((analysis, idx) => {
@@ -202,22 +202,22 @@ const Compare = () => {
                     <h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
                       Emotion Distribution Comparison
                     </h2>
-                    <ResponsiveContainer width="100%" height={350}>
-                      <BarChart data={comparisonData} margin={{ top: 10, right: 10, left: -10, bottom: 60 }}>
+                    <ResponsiveContainer width="100%" height={380}>
+                      <BarChart data={comparisonData} margin={{ top: 20, right: 15, left: 0, bottom: 80 }}>
                         <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
                         <XAxis 
                           dataKey="emotion" 
                           stroke="#9ca3af"
-                          tick={{ fill: '#9ca3af', fontSize: 10 }}
-                          angle={-45}
+                          tick={{ fill: '#9ca3af', fontSize: 9 }}
+                          angle={-50}
                           textAnchor="end"
-                          height={80}
+                          height={90}
                           interval={0}
                         />
                         <YAxis 
                           stroke="#9ca3af"
-                          tick={{ fill: '#9ca3af', fontSize: 10 }}
-                          width={30}
+                          tick={{ fill: '#9ca3af', fontSize: 9 }}
+                          width={35}
                         />
                         <Tooltip 
                           contentStyle={{ 
@@ -249,13 +249,13 @@ const Compare = () => {
                     <h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
                       Emotional Profile Radar
                     </h2>
-                    <ResponsiveContainer width="100%" height={350}>
-                      <RadarChart data={radarData}>
+                    <ResponsiveContainer width="100%" height={380}>
+                      <RadarChart data={radarData} margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
                         <PolarGrid stroke="#374151" />
                         <PolarAngleAxis 
                           dataKey="emotion"
                           stroke="#9ca3af"
-                          tick={{ fill: '#9ca3af', fontSize: 9 }}
+                          tick={{ fill: '#9ca3af', fontSize: 8 }}
                         />
                         <PolarRadiusAxis 
                           stroke="#9ca3af"
