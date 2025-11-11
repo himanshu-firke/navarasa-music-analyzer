@@ -1,0 +1,118 @@
+# 🔧 Render ML Service - Force Python 3.11
+
+## ❌ Problem:
+Render is ignoring runtime.txt and using Python 3.13
+
+## ✅ Solution - 2 Methods:
+
+---
+
+## Method 1: Update via Render Dashboard (RECOMMENDED)
+
+1. Go to https://dashboard.render.com
+2. Click on **navarasa-ml-service**
+3. Go to **Settings** tab
+4. Scroll to **Environment**
+5. Click **Advanced** (if needed)
+6. Find **Python Version** dropdown or add environment variable
+7. Add/Update:
+   ```
+   PYTHON_VERSION = 3.11.9
+   ```
+8. Click **Save Changes**
+9. Go to **Manual Deploy** → Deploy latest commit
+
+---
+
+## Method 2: Files Updated (Auto-deploy)
+
+I've updated these files (commit and push):
+
+### 1. render.yaml
+- Added `PYTHON_VERSION: 3.11.9` to environment variables
+- Updated build command to install setuptools and wheel first
+
+### 2. requirements.txt  
+- Added setuptools and wheel at the top
+- These ensure proper build environment
+
+### Commands to Deploy:
+```bash
+git add .
+git commit -m "Force Python 3.11.9 for ML service"
+git push
+```
+
+---
+
+## ⚠️ If Still Fails:
+
+### Manual Override in Render Dashboard:
+
+1. **Delete the current service**
+2. **Create new service** with these EXACT settings:
+
+   **Basic Settings:**
+   - Name: `navarasa-ml-service`
+   - Environment: **Python**
+   - Region: Oregon
+   - Branch: `main`
+   - Root Directory: `ml-service`
+
+   **Build & Deploy:**
+   - Build Command: 
+     ```
+     pip install --upgrade pip setuptools wheel && pip install -r requirements.txt
+     ```
+   - Start Command:
+     ```
+     uvicorn app.main:app --host 0.0.0.0 --port $PORT
+     ```
+
+   **Environment Variables:**
+   ```
+   PORT = 8000
+   PYTHON_VERSION = 3.11.9
+   ```
+
+   **Advanced (if available):**
+   - Python Version: **3.11.9** or **3.11** (select from dropdown)
+
+3. Click **Create Web Service**
+
+---
+
+## ✅ Verification:
+
+After deployment, check logs for:
+```
+==> Using Python version 3.11.9
+```
+
+NOT:
+```
+==> Using Python version 3.13.x  ❌
+```
+
+---
+
+## 📊 Why This Happens:
+
+- Render defaults to latest Python (3.13)
+- runtime.txt sometimes gets ignored
+- Environment variable `PYTHON_VERSION` has higher priority
+- Dashboard settings have HIGHEST priority
+
+---
+
+## 🚀 Next Steps:
+
+1. **Option A**: Set PYTHON_VERSION in dashboard (fastest)
+2. **Option B**: Commit updated files and push
+3. **Option C**: Delete and recreate service with correct settings
+
+Choose what works best for you!
+
+---
+
+✅ Once Python 3.11.9 is confirmed in logs, deployment will succeed!
