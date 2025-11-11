@@ -52,7 +52,7 @@ export const FutureScopeSection = () => {
   const futureGoals = [
     {
       title: 'Fine-tune YAMNet on Emotion Dataset',
-      description: 'Fine-tune the YAMNet model specifically on a large labeled dataset of music files mapped to Navarasa emotions. This would improve accuracy from the current baseline to potentially 85-95%, providing more precise emotion detection tailored to the nine Rasa categories.
+      description: 'Fine-tune the YAMNet model specifically on a large labeled dataset of music files mapped to Navarasa emotions. This would improve accuracy from the current baseline to potentially 85-95%, providing more precise emotion detection tailored to the nine Rasa categories.'
     },
     {
       title: 'Real-time Streaming Analysis',
