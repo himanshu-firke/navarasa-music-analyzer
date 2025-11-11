@@ -244,6 +244,15 @@ const Contact = () => {
                 Navarasa Music Emotion Analyzer is a full-stack machine learning application that classifies music 
                 into nine classical Indian emotions using audio feature extraction and neural networks.
               </p>
+              <a
+                href="https://github.com/himanshu-firke/navarasa-music-analyzer"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-4 py-2 mb-4 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 rounded-lg hover:scale-105 transition-transform text-sm font-semibold"
+              >
+                <Github className="w-4 h-4 mr-2" />
+                View on GitHub
+              </a>
               <div className="flex flex-wrap gap-2">
                 <span className="px-3 py-1 bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-400 rounded-full text-sm font-semibold">
                   React

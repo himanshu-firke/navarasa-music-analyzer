@@ -82,8 +82,8 @@ const Footer = () => {
             <h3 className="text-sm sm:text-base font-semibold text-gray-900 dark:text-white mb-3 sm:mb-4">Resources</h3>
             <ul className="space-y-1.5 sm:space-y-2">
               <li>
-                <a href="#" className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 hover:text-pink-500 transition-colors">
-                  API Documentation
+                <a href="https://github.com/himanshu-firke/navarasa-music-analyzer#readme" target="_blank" rel="noopener noreferrer" className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 hover:text-pink-500 transition-colors">
+                  Documentation
                 </a>
               </li>
               <li>
@@ -92,7 +92,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-600 dark:text-gray-400 hover:text-pink-500 transition-colors">
+                <a href="https://github.com/himanshu-firke/navarasa-music-analyzer" target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-400 hover:text-pink-500 transition-colors">
                   GitHub Repository
                 </a>
               </li>

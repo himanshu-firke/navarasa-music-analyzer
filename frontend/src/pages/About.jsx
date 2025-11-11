@@ -1,5 +1,5 @@
 import { NAVARASAS } from '../utils/constants'
-import { Book, Users, Code } from 'lucide-react'
+import { Book, Users, Code, Github } from 'lucide-react'
 
 const About = () => {
   return (
@@ -95,9 +95,18 @@ const About = () => {
           <p className="mb-3 sm:mb-4 text-sm sm:text-base">
             A research project combining ancient Indian cultural theory with modern AI technology
           </p>
-          <p className="text-xs sm:text-sm opacity-90">
+          <p className="text-xs sm:text-sm opacity-90 mb-4">
             Built with React, Node.js, Python, TensorFlow, and MongoDB
           </p>
+          <a
+            href="https://github.com/himanshu-firke/navarasa-music-analyzer"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center px-5 py-2.5 bg-white text-purple-600 rounded-lg hover:scale-105 transition-transform text-sm font-semibold shadow-lg"
+          >
+            <Github className="w-4 h-4 mr-2" />
+            View Source Code
+          </a>
         </div>
       </div>
     </div>
