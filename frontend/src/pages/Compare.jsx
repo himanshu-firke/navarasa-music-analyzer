@@ -80,13 +80,13 @@ const Compare = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12 px-4">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8 sm:py-12 px-4">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-gray-900 dark:text-white mb-4">
+        <div className="text-center mb-8 sm:mb-12">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
             Compare Songs
           </h1>
-          <p className="text-gray-600 dark:text-gray-400 text-lg">
+          <p className="text-gray-600 dark:text-gray-400 text-base sm:text-lg px-2">
             Select up to 4 songs to compare their emotional profiles
           </p>
         </div>
@@ -102,15 +102,15 @@ const Compare = () => {
             </p>
           </div>
         ) : (
-          <div className="grid lg:grid-cols-3 gap-8">
+          <div className="grid lg:grid-cols-3 gap-6 sm:gap-8">
             {/* Selection Panel */}
             <div className="lg:col-span-1">
-              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 sticky top-4">
-                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 sm:p-6 lg:sticky lg:top-4">
+                <h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
                   Select Songs ({selectedIds.length}/4)
                 </h2>
                 
-                <div className="space-y-3 max-h-[600px] overflow-y-auto">
+                <div className="space-y-2 sm:space-y-3 max-h-[400px] sm:max-h-[600px] overflow-y-auto">
                   {analyses.map((analysis) => {
                     const isSelected = selectedIds.includes(analysis._id)
                     const primaryRasa = NAVARASAS[analysis.primaryEmotion] || {}
@@ -119,17 +119,17 @@ const Compare = () => {
                       <div
                         key={analysis._id}
                         onClick={() => toggleSelection(analysis._id)}
-                        className={`p-4 rounded-lg border-2 cursor-pointer transition-all ${
+                        className={`p-3 sm:p-4 rounded-lg border-2 cursor-pointer transition-all ${
                           isSelected
                             ? 'border-pink-500 bg-pink-50 dark:bg-pink-900/20'
                             : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'
                         }`}
                       >
-                        <div className="flex items-center justify-between mb-2">
-                          <div className="flex items-center space-x-2">
-                            <span className="text-2xl">{primaryRasa.emoji}</span>
-                            <div>
-                              <p className="font-semibold text-gray-900 dark:text-white text-sm truncate">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center space-x-2 flex-1 min-w-0">
+                            <span className="text-xl sm:text-2xl flex-shrink-0">{primaryRasa.emoji}</span>
+                            <div className="flex-1 min-w-0">
+                              <p className="font-semibold text-gray-900 dark:text-white text-xs sm:text-sm truncate">
                                 {analysis.filename}
                               </p>
                               <p className="text-xs text-gray-500 dark:text-gray-400">
@@ -137,7 +137,7 @@ const Compare = () => {
                               </p>
                             </div>
                           </div>
-                          <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
+                          <div className={`w-5 h-5 sm:w-6 sm:h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 ml-2 ${
                             isSelected
                               ? 'bg-pink-500 border-pink-500'
                               : 'border-gray-300 dark:border-gray-600'
@@ -164,11 +164,11 @@ const Compare = () => {
               ) : (
                 <div className="space-y-6">
                   {/* Selected Songs Summary */}
-                  <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
-                    <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+                  <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 sm:p-6">
+                    <h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
                       Selected Songs
                     </h2>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                       {selectedAnalyses.map((analysis, idx) => {
                         const primaryRasa = NAVARASAS[analysis.primaryEmotion] || {}
                         return (
@@ -177,8 +177,8 @@ const Compare = () => {
                               className="w-3 h-3 rounded-full"
                               style={{ backgroundColor: colors[idx] }}
                             />
-                            <div className="flex-1 min-w-0">
-                              <p className="font-semibold text-gray-900 dark:text-white text-sm truncate">
+                            <div className="flex-1 min-w-0 mr-2">
+                              <p className="font-semibold text-gray-900 dark:text-white text-xs sm:text-sm truncate">
                                 {analysis.filename}
                               </p>
                               <p className="text-xs text-gray-500 dark:text-gray-400">
@@ -198,11 +198,11 @@ const Compare = () => {
                   </div>
 
                   {/* Bar Chart Comparison */}
-                  <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
-                    <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
+                  <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 sm:p-6">
+                    <h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
                       Emotion Distribution Comparison
                     </h2>
-                    <ResponsiveContainer width="100%" height={400}>
+                    <ResponsiveContainer width="100%" height={300} className="sm:h-[400px]">
                       <BarChart data={comparisonData}>
                         <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
                         <XAxis 
@@ -237,11 +237,11 @@ const Compare = () => {
                   </div>
 
                   {/* Radar Chart */}
-                  <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
-                    <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
+                  <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 sm:p-6">
+                    <h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
                       Emotional Profile Radar
                     </h2>
-                    <ResponsiveContainer width="100%" height={400}>
+                    <ResponsiveContainer width="100%" height={300} className="sm:h-[400px]">
                       <RadarChart data={radarData}>
                         <PolarGrid stroke="#374151" />
                         <PolarAngleAxis 
@@ -269,25 +269,26 @@ const Compare = () => {
                   </div>
 
                   {/* Dominant Emotions Table */}
-                  <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
-                    <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
+                  <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 sm:p-6">
+                    <h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
                       Dominant Emotions
                     </h2>
-                    <div className="overflow-x-auto">
-                      <table className="w-full">
+                    <div className="overflow-x-auto -mx-4 sm:mx-0">
+                      <div className="inline-block min-w-full align-middle">
+                      <table className="w-full min-w-[600px]">
                         <thead>
                           <tr className="border-b border-gray-200 dark:border-gray-700">
-                            <th className="text-left py-3 px-4 text-gray-700 dark:text-gray-300 font-semibold">
+                            <th className="text-left py-2 sm:py-3 px-2 sm:px-4 text-gray-700 dark:text-gray-300 font-semibold text-xs sm:text-sm">
                               Song
                             </th>
-                            <th className="text-left py-3 px-4 text-gray-700 dark:text-gray-300 font-semibold">
-                              Primary Emotion
+                            <th className="text-left py-2 sm:py-3 px-2 sm:px-4 text-gray-700 dark:text-gray-300 font-semibold text-xs sm:text-sm">
+                              Primary
                             </th>
-                            <th className="text-left py-3 px-4 text-gray-700 dark:text-gray-300 font-semibold">
+                            <th className="text-left py-2 sm:py-3 px-2 sm:px-4 text-gray-700 dark:text-gray-300 font-semibold text-xs sm:text-sm">
                               Confidence
                             </th>
-                            <th className="text-left py-3 px-4 text-gray-700 dark:text-gray-300 font-semibold">
-                              Secondary Emotion
+                            <th className="text-left py-2 sm:py-3 px-2 sm:px-4 text-gray-700 dark:text-gray-300 font-semibold text-xs sm:text-sm">
+                              Secondary
                             </th>
                           </tr>
                         </thead>
@@ -301,34 +302,34 @@ const Compare = () => {
                             
                             return (
                               <tr key={analysis._id} className="border-b border-gray-100 dark:border-gray-700">
-                                <td className="py-3 px-4">
+                                <td className="py-2 sm:py-3 px-2 sm:px-4">
                                   <div className="flex items-center space-x-2">
                                     <div 
-                                      className="w-3 h-3 rounded-full"
+                                      className="w-2 h-2 sm:w-3 sm:h-3 rounded-full flex-shrink-0"
                                       style={{ backgroundColor: colors[idx] }}
                                     />
-                                    <span className="text-gray-900 dark:text-white text-sm">
-                                      {analysis.filename.substring(0, 25)}...
+                                    <span className="text-gray-900 dark:text-white text-xs sm:text-sm truncate">
+                                      {analysis.filename.substring(0, 20)}...
                                     </span>
                                   </div>
                                 </td>
-                                <td className="py-3 px-4">
-                                  <div className="flex items-center space-x-2">
-                                    <span>{primaryRasa.emoji}</span>
-                                    <span className="text-gray-900 dark:text-white font-semibold">
+                                <td className="py-2 sm:py-3 px-2 sm:px-4">
+                                  <div className="flex items-center space-x-1 sm:space-x-2">
+                                    <span className="text-sm sm:text-base">{primaryRasa.emoji}</span>
+                                    <span className="text-gray-900 dark:text-white font-semibold text-xs sm:text-sm">
                                       {primaryRasa.name}
                                     </span>
                                   </div>
                                 </td>
-                                <td className="py-3 px-4">
-                                  <span className="text-gray-900 dark:text-white font-bold">
+                                <td className="py-2 sm:py-3 px-2 sm:px-4">
+                                  <span className="text-gray-900 dark:text-white font-bold text-xs sm:text-sm">
                                     {(analysis.confidence * 100).toFixed(0)}%
                                   </span>
                                 </td>
-                                <td className="py-3 px-4">
-                                  <div className="flex items-center space-x-2">
-                                    <span>{secondaryRasa.emoji}</span>
-                                    <span className="text-gray-600 dark:text-gray-400">
+                                <td className="py-2 sm:py-3 px-2 sm:px-4">
+                                  <div className="flex items-center space-x-1 sm:space-x-2">
+                                    <span className="text-sm sm:text-base">{secondaryRasa.emoji}</span>
+                                    <span className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm">
                                       {secondaryRasa.name} ({(secondary[1] * 100).toFixed(0)}%)
                                     </span>
                                   </div>
@@ -338,6 +339,7 @@ const Compare = () => {
                           })}
                         </tbody>
                       </table>
+                      </div>
                     </div>
                   </div>
                 </div>

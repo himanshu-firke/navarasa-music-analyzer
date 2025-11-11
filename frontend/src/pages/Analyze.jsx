@@ -105,17 +105,17 @@ const Analyze = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-8"
+          className="text-center mb-6 sm:mb-8"
         >
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
             Analyze Your Music
           </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-400">
+          <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 px-2">
             Upload an audio file to discover its emotional essence
           </p>
         </motion.div>
@@ -125,7 +125,7 @@ const Analyze = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2 }}
-          className="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-8"
+          className="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-4 sm:p-6 lg:p-8"
         >
           {!file ? (
             <div
@@ -133,17 +133,17 @@ const Analyze = () => {
               onDragLeave={handleDrag}
               onDragOver={handleDrag}
               onDrop={handleDrop}
-              className={`border-2 border-dashed rounded-lg p-12 text-center transition-all ${
+              className={`border-2 border-dashed rounded-lg p-8 sm:p-12 text-center transition-all ${
                 dragActive
                   ? 'border-pink-500 bg-pink-50 dark:bg-pink-900/20'
                   : 'border-gray-300 dark:border-gray-700 hover:border-pink-400'
               }`}
             >
-              <Upload className="w-16 h-16 mx-auto mb-4 text-gray-400" />
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+              <Upload className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 text-gray-400" />
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2">
                 Drop your audio file here
               </h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-4">
+              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4">
                 or click to browse
               </p>
               <input
@@ -155,26 +155,26 @@ const Analyze = () => {
               />
               <label
                 htmlFor="file-upload"
-                className="inline-block px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg font-semibold cursor-pointer hover:scale-105 transition-transform"
+                className="inline-block px-5 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg font-semibold cursor-pointer hover:scale-105 transition-transform text-sm sm:text-base"
               >
                 Choose File
               </label>
-              <p className="text-sm text-gray-500 dark:text-gray-500 mt-4">
+              <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-500 mt-3 sm:mt-4 px-2">
                 Supported formats: MP3, WAV, FLAC, OGG (Max 10MB)
               </p>
             </div>
           ) : (
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               {/* File Info */}
-              <div className="flex items-start space-x-4 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                <div className="p-3 bg-gradient-to-br from-pink-500 to-purple-600 rounded-lg">
-                  <Music className="w-6 h-6 text-white" />
+              <div className="flex items-start space-x-3 sm:space-x-4 p-3 sm:p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                <div className="p-2 sm:p-3 bg-gradient-to-br from-pink-500 to-purple-600 rounded-lg flex-shrink-0">
+                  <Music className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h4 className="text-lg font-semibold text-gray-900 dark:text-white truncate">
+                  <h4 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white truncate">
                     {file.name}
                   </h4>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                  <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
                     {formatFileSize(file.size)}
                   </p>
                 </div>
@@ -191,11 +191,11 @@ const Analyze = () => {
               {/* Progress */}
               {(uploading || analyzing) && (
                 <div className="space-y-2">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-gray-600 dark:text-gray-400">
+                  <div className="flex justify-between text-xs sm:text-sm">
+                    <span className="text-gray-600 dark:text-gray-400 pr-2">
                       {uploading ? 'Uploading...' : 'Analyzing emotions... This may take 10-30 seconds'}
                     </span>
-                    <span className="text-gray-900 dark:text-white font-semibold">
+                    <span className="text-gray-900 dark:text-white font-semibold flex-shrink-0">
                       {uploading ? `${uploadProgress}%` : '⏳'}
                     </span>
                   </div>
@@ -219,7 +219,7 @@ const Analyze = () => {
               {!uploading && !analyzing && (
                 <button
                   onClick={handleAnalyze}
-                  className="w-full px-6 py-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg font-semibold hover:scale-105 transition-transform shadow-lg"
+                  className="w-full px-5 sm:px-6 py-3 sm:py-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg font-semibold hover:scale-105 transition-transform shadow-lg text-sm sm:text-base"
                 >
                   Analyze Emotion
                 </button>
@@ -245,25 +245,25 @@ const Analyze = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
-          className="mt-12 bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8"
+          className="mt-8 sm:mt-12 bg-white dark:bg-gray-800 rounded-xl shadow-lg p-5 sm:p-6 lg:p-8"
         >
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
             How It Works
           </h2>
-          <div className="space-y-4">
+          <div className="space-y-3 sm:space-y-4">
             {[
               { step: 1, title: 'Upload Audio', desc: 'Choose your music file (MP3, WAV, FLAC, or OGG)' },
               { step: 2, title: 'AI Analysis', desc: 'Our CNN model extracts audio features and analyzes patterns' },
               { step: 3, title: 'Emotion Detection', desc: 'AI predicts which Navarasa your music embodies' },
               { step: 4, title: 'View Results', desc: 'See detailed emotion breakdown with charts and descriptions' },
             ].map((item) => (
-              <div key={item.step} className="flex items-start space-x-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-pink-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold">
+              <div key={item.step} className="flex items-start space-x-3 sm:space-x-4">
+                <div className="flex-shrink-0 w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-br from-pink-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-sm sm:text-base">
                   {item.step}
                 </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900 dark:text-white">{item.title}</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">{item.desc}</p>
+                <div className="flex-1">
+                  <h3 className="font-semibold text-gray-900 dark:text-white text-sm sm:text-base">{item.title}</h3>
+                  <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">{item.desc}</p>
                 </div>
               </div>
             ))}

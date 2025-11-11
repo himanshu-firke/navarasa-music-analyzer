@@ -45,22 +45,22 @@ const Contact = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12 px-4">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8 sm:py-12 px-4">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-gray-900 dark:text-white mb-4">
+        <div className="text-center mb-8 sm:mb-12">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
             Get in Touch
           </h1>
-          <p className="text-gray-600 dark:text-gray-400 text-lg">
+          <p className="text-gray-600 dark:text-gray-400 text-base sm:text-lg px-2">
             Have questions about the project? I'd love to hear from you!
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8">
+        <div className="grid lg:grid-cols-2 gap-6 sm:gap-8">
           {/* Contact Form */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
-              <MessageSquare className="w-6 h-6 mr-2 text-pink-500" />
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-5 sm:p-6 lg:p-8">
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6 flex items-center">
+              <MessageSquare className="w-5 h-5 sm:w-6 sm:h-6 mr-2 text-pink-500" />
               Send a Message
             </h2>
             
@@ -77,7 +77,7 @@ const Contact = () => {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                 {error && (
                   <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
                     <p className="text-red-600 dark:text-red-400 text-sm">{error}</p>
@@ -85,7 +85,7 @@ const Contact = () => {
                 )}
                 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                  <label className="block text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                     Name
                   </label>
                   <input
@@ -94,7 +94,7 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent text-gray-900 dark:text-white"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent text-gray-900 dark:text-white"
                     placeholder="Your name"
                   />
                 </div>
@@ -147,7 +147,7 @@ const Contact = () => {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="w-full flex items-center justify-center px-6 py-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg font-semibold hover:from-pink-600 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full flex items-center justify-center px-5 sm:px-6 py-3 sm:py-4 text-sm sm:text-base bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg font-semibold hover:from-pink-600 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {submitting ? (
                     <>
@@ -168,12 +168,12 @@ const Contact = () => {
           {/* Contact Information */}
           <div className="space-y-6">
             {/* About Me Card */}
-            <div className="bg-gradient-to-br from-pink-500 to-purple-600 rounded-xl shadow-lg p-8 text-white">
-              <div className="flex items-center mb-4">
-                <User className="w-8 h-8 mr-3" />
-                <h2 className="text-2xl font-bold">Himanshu Ganesh Firke</h2>
+            <div className="bg-gradient-to-br from-pink-500 to-purple-600 rounded-xl shadow-lg p-5 sm:p-6 lg:p-8 text-white">
+              <div className="flex items-center mb-3 sm:mb-4">
+                <User className="w-6 h-6 sm:w-8 sm:h-8 mr-2 sm:mr-3 flex-shrink-0" />
+                <h2 className="text-xl sm:text-2xl font-bold">Himanshu Ganesh Firke</h2>
               </div>
-              <p className="mb-6 opacity-90">
+              <p className="mb-4 sm:mb-6 opacity-90 text-sm sm:text-base">
                 Full-stack developer passionate about combining cultural heritage with modern AI technology. 
                 This project demonstrates the intersection of ancient Indian philosophy and machine learning.
               </p>
@@ -184,8 +184,8 @@ const Contact = () => {
             </div>
 
             {/* Connect Card */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-5 sm:p-6 lg:p-8">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
                 Connect With Me
               </h2>
               
@@ -236,11 +236,11 @@ const Contact = () => {
             </div>
 
             {/* Project Info Card */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-5 sm:p-6 lg:p-8">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
                 About This Project
               </h2>
-              <p className="text-gray-600 dark:text-gray-400 mb-4">
+              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-3 sm:mb-4">
                 Navarasa Music Emotion Analyzer is a full-stack machine learning application that classifies music 
                 into nine classical Indian emotions using audio feature extraction and neural networks.
               </p>
