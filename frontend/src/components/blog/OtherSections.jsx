@@ -30,8 +30,8 @@ export const ResultsSection = () => (
             User testing revealed high satisfaction with the intuitive interface, real-time analysis capabilities, 
             and comprehensive visualization features. The comparison functionality proved particularly valuable, 
             allowing users to understand emotional differences across their music library. The system performed well 
-            across different audio qualities and formats, demonstrating robustness in real-world scenarios. Future 
-            improvements with custom-trained CNN models could further enhance accuracy to 85-95%.
+            across different audio qualities and formats, demonstrating robustness in real-world scenarios. The YAMNet 
+            model provides strong baseline performance, with future fine-tuning on emotion-specific datasets potentially enhancing accuracy to 85-95%.
           </p>
 
           <BlogImage 
@@ -51,8 +51,8 @@ export const ResultsSection = () => (
 export const FutureScopeSection = () => {
   const futureGoals = [
     {
-      title: 'Custom CNN Model Training',
-      description: 'Train a custom Convolutional Neural Network specifically on a labeled dataset of music files mapped to Navarasa emotions. This would improve accuracy from the current 75-85% to potentially 85-95%, providing more precise emotion detection tailored to the nine Rasa categories.'
+      title: 'Fine-tune YAMNet on Emotion Dataset',
+      description: 'Fine-tune the YAMNet model specifically on a large labeled dataset of music files mapped to Navarasa emotions. This would improve accuracy from the current baseline to potentially 85-95%, providing more precise emotion detection tailored to the nine Rasa categories.
     },
     {
       title: 'Real-time Streaming Analysis',

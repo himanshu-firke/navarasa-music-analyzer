@@ -75,12 +75,12 @@ const About = () => {
                 How Our AI Analyzes Music
               </h2>
               <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-3 sm:mb-4">
-                Our system uses a <strong>Convolutional Neural Network (CNN)</strong> trained to recognize 
+                Our system uses <strong>YAMNet (Yet Another Mobile Network)</strong>, a deep learning model trained to recognize 
                 patterns in audio that correspond to each Navarasa:
               </p>
               <ol className="list-decimal list-inside space-y-2 text-sm sm:text-base text-gray-600 dark:text-gray-400">
                 <li><strong>Feature Extraction:</strong> Extract MFCCs, spectral features, tempo, and energy</li>
-                <li><strong>Pattern Recognition:</strong> CNN identifies emotional patterns in the audio</li>
+                <li><strong>Pattern Recognition:</strong> YAMNet identifies emotional patterns in the audio</li>
                 <li><strong>Classification:</strong> AI predicts which Navarasa best matches the music</li>
                 <li><strong>Confidence Score:</strong> Provides probability distribution across all 9 emotions</li>
               </ol>

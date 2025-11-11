@@ -253,7 +253,7 @@ const Analyze = () => {
           <div className="space-y-3 sm:space-y-4">
             {[
               { step: 1, title: 'Upload Audio', desc: 'Choose your music file (MP3, WAV, FLAC, or OGG)' },
-              { step: 2, title: 'AI Analysis', desc: 'Our CNN model extracts audio features and analyzes patterns' },
+              { step: 2, title: 'AI Analysis', desc: 'YAMNet model extracts audio features and analyzes patterns' },
               { step: 3, title: 'Emotion Detection', desc: 'AI predicts which Navarasa your music embodies' },
               { step: 4, title: 'View Results', desc: 'See detailed emotion breakdown with charts and descriptions' },
             ].map((item) => (

@@ -8,7 +8,7 @@ const Home = () => {
     {
       icon: Sparkles,
       title: 'AI-Powered Analysis',
-      description: 'Advanced CNN model trained on thousands of songs for accurate emotion detection',
+      description: 'YAMNet deep learning model trained on thousands of audio samples for accurate emotion detection',
     },
     {
       icon: Globe,
