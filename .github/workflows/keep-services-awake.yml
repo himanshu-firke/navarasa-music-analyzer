@@ -1,0 +1,24 @@
+name: Keep Render Services Awake
+
+on:
+  schedule:
+    # Run every 10 minutes
+    - cron: '*/10 * * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  ping-services:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping ML Service
+        run: |
+          echo "Pinging ML Service..."
+          curl -f https://navarasa-ml-service.onrender.com/health || echo "ML Service ping failed"
+          
+      - name: Ping Backend Service
+        run: |
+          echo "Pinging Backend Service..."
+          curl -f https://navarasa-backend-4xx0.onrender.com/api/health || echo "Backend ping failed"
+          
+      - name: Summary
+        run: echo "✅ Services pinged successfully at $(date)"
