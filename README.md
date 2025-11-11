@@ -10,7 +10,6 @@
 
 **Live Demo**: [Coming Soon]  
 **Creator**: Himanshu Ganesh Firke  
-**Purpose**: Research Project for Prof. Patnaik (Music & Emotion Recognition)
 
 ---
 
