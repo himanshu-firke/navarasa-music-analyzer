@@ -53,7 +53,7 @@ const Analyze = () => {
     setFile(selectedFile)
   }
 
-  const handleAnalyze = async () => {
+  const handleAnalyze = async (retryCount = 0) => {
     if (!file) return
 
     try {
@@ -77,22 +77,44 @@ const Analyze = () => {
         throw new Error('No file ID received from upload')
       }
       
-      // Analyze file
-      const analysisResponse = await analyzeAudio(fileId)
-      
-      console.log('Analysis response:', analysisResponse)
-      
-      // Navigate to results page (backend returns { success, message, data: { id, ... } })
-      const analysisId = analysisResponse.data?.id || analysisResponse.id
-      
-      if (!analysisId) {
-        throw new Error('No analysis ID received')
+      // Analyze file with retry logic for cold starts
+      try {
+        const analysisResponse = await analyzeAudio(fileId)
+        
+        console.log('Analysis response:', analysisResponse)
+        
+        // Navigate to results page (backend returns { success, message, data: { id, ... } })
+        const analysisId = analysisResponse.data?.id || analysisResponse.id
+        
+        if (!analysisId) {
+          throw new Error('No analysis ID received')
+        }
+        
+        navigate(`/results/${analysisId}`)
+      } catch (analysisError) {
+        // Check if it's a cold start error (503 or specific message)
+        const isColdStart = analysisError.message?.includes('waking up') || 
+                           analysisError.message?.includes('cold start') ||
+                           analysisError.response?.status === 503
+        
+        if (isColdStart && retryCount < 2) {
+          // Show user-friendly message and retry
+          setError(`🔄 ML service is starting up... Retrying automatically (${retryCount + 1}/2)`)
+          console.log(`Cold start detected, retrying in 30 seconds... (attempt ${retryCount + 1})`)
+          
+          // Wait 30 seconds then retry
+          await new Promise(resolve => setTimeout(resolve, 30000))
+          setError(`🔄 Retrying analysis... (attempt ${retryCount + 2}/3)`)
+          
+          // Retry the analysis
+          return handleAnalyze(retryCount + 1)
+        }
+        
+        throw analysisError
       }
       
-      navigate(`/results/${analysisId}`)
-      
     } catch (err) {
-      setError(err.message || 'Failed to analyze audio')
+      setError(err.message || 'Failed to analyze audio. Please try again.')
       setUploading(false)
       setAnalyzing(false)
     }
