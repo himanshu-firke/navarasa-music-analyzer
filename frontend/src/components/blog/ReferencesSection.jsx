@@ -6,23 +6,11 @@ const ReferencesSection = () => {
     "Prof. Priyadarshi Patnaik, Rasa in Aesthetics: An Application of Rasa Theory to Modern Western Literature.",
     "Patrik N. Juslin and Petri Laukka, Expression, Perception, and Induction of Musical Emotions: A Review and a Questionnaire Study of Everyday Listening, Journal of New Music Research, Vol. 33, No. 3, pp. 217–238, 2004.",
     "V.N. Bhatkande. Hindusthani Sangeet Paddhati. Sangeet Karyalaya, 1920-1979.",
-    "Peer to Peer Multimedia Real-Time Communication System based on WebRTC Technology",
     "Sharangadev, Sangeet Ratnakara, 1210–1247.",
-    "Russell's Circumplex Model of Affect",
     "Monojit Choudhury, Pradip taRanjan Ray, Measuring Similarities across Musical Compositions: An Approach Based on the Raag Paradigm, Journal of the ITC-SRA, vol.17 2003.",
-    "Anirban Patranabis et al., Measurement of Emotion induced by Hindusthani Music –A Human response and EEG study, Journal of ITC Sageet Research Academy –Ninaad, Vol. 26-27, December 2013.",
-    "Asmita Chatterji and Dana Ganu, A Framework for Understanding the Relation Between Music And Emotions, Journal of ITC Sangeet Research Academy, Vol. 26-27, December, 2013.",
     "Alicja A Wieczorkowska, Ashoke Kumar Datta, Ranjan Sengupta, Nityananda Dey, and Bhaswati Mukherjee, On Search for Emotion in Hindusthani Vocal Music, Advances in Music Information Retrieval, SCI 274, pp. 285–304, Springer-Verlag Berlin Heidelberg, 2010.",
-    "Application of the Navarasa Theory in Architecture",
     "Parag Chordia and Alex Rae, Understanding emotion in raag: An empirical study of listener responses, Computer Music Modeling and Retrieval, Sense of Sounds, pp. 110–124, 2009.",
-    "Analysis of Features for Mood Detection in North Indian Classical Music-A Literature Review",
-    "Tao Li, Mitsunori Ogihara, 2004. Content-Based Music Similarity Search and Emotion Detection, International conference on Acoustics, Speech and Signal Processing (ICASSP 2004), 705-708.",
-    "Thayer's Model of Mood",
-    "Hiba Ahsan, Vijay Kumar and C.V. Jawahar, Multi-Label Annotation of Music, IEEE 2015",
-    "L. Lu, D. Liu, and H. J. Zhang, Automatic mood detection and tracking of music audio signals, IEEE Transactions on Audio, Speech and Language Processing, vol. 14, no. 1, pp.5–18, 2006",
-    "D. Liu, L. Lu and H-J. Zang, Automatic Mood Detection from Acoustic Music Data, ISMIR 2003",
-    "G. Peeters, A generic training and classification system for MIREX08 classification tasks: Audio music mood, audio genre, audio artist and audio tag, MIREX 2008",
-    "Analysis of Features for Mood Detection in North Indian Classical Music-A Literature Review"
+    "Tao Li, Mitsunori Ogihara, 2004. Content-Based Music Similarity Search and Emotion Detection, International conference on Acoustics, Speech and Signal Processing (ICASSP 2004), 705-708."
   ]
 
   return (
