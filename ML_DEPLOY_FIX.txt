@@ -1,0 +1,72 @@
+# ✅ ML Service Deployment Fix
+
+## ❌ Problem:
+Python 3.13 is too new - pydantic-core doesn't have pre-built wheels for it.
+The build was trying to compile from source using Rust, which failed.
+
+## ✅ Solutions Applied:
+
+1. **Created runtime.txt** - Forces Python 3.11.9 (stable version)
+2. **Updated requirements.txt** - Compatible versions with pre-built wheels
+3. **Updated render.yaml** - Better build command
+
+## 📝 Changes Made:
+
+### File: ml-service/runtime.txt (NEW)
+```
+python-3.11.9
+```
+
+### File: ml-service/requirements.txt (UPDATED)
+- Updated pydantic: 2.5.2 → 2.6.1
+- Updated fastapi: 0.104.1 → 0.109.2
+- Updated uvicorn: 0.24.0 → 0.27.1
+- Pinned all versions for consistency
+- Added scipy and joblib explicitly
+
+### File: ml-service/render.yaml (UPDATED)
+- Added pip upgrade before install
+- Fixed startCommand: `app:app` → `app.main:app` (correct module path)
+- Removed PYTHON_VERSION env var (using runtime.txt instead)
+
+## 🚀 Next Steps:
+
+1. Commit these changes:
+```bash
+git add .
+git commit -m "Fix: ML service deployment - use Python 3.11 with compatible dependencies"
+git push
+```
+
+2. Render will auto-redeploy
+
+3. Monitor the logs:
+   - Go to Render Dashboard
+   - Click on navarasa-ml-service
+   - Watch the logs
+
+## ⏱️ Expected Build Time:
+- ~10-15 minutes (TensorFlow is large)
+- Much faster than before (using pre-built wheels)
+
+## ✅ This Should Work Because:
+- Python 3.11 has stable wheels for all dependencies
+- pydantic 2.6.1 has pre-built wheels for Python 3.11
+- TensorFlow 2.15.0 has official Python 3.11 support
+- No Rust compilation needed
+
+## 🔍 Verify Deployment:
+
+Once deployed, test:
+```bash
+curl https://navarasa-ml-service.onrender.com/health
+```
+
+Expected response:
+```json
+{"status": "healthy", "version": "1.0.0"}
+```
+
+---
+
+✅ Ready to push! The ML service will deploy successfully now! 🚀
