@@ -1,9 +1,22 @@
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Music, Sparkles, TrendingUp, Globe } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { NAVARASAS } from '../utils/constants'
 
 const Home = () => {
+  // Pre-warm ML service when user lands on homepage
+  useEffect(() => {
+    const warmUpService = async () => {
+      try {
+        await fetch('https://navarasa-ml-service.onrender.com/health')
+        await fetch('https://navarasa-backend-4xx0.onrender.com/api/health')
+      } catch (error) {
+        console.log('Services warming up...')
+      }
+    }
+    warmUpService()
+  }, [])
   const features = [
     {
       icon: Sparkles,

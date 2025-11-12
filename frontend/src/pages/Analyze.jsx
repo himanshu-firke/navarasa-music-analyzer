@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Upload, Music, AlertCircle } from 'lucide-react'
 import { motion } from 'framer-motion'
@@ -13,6 +13,27 @@ const Analyze = () => {
   const [uploadProgress, setUploadProgress] = useState(0)
   const [error, setError] = useState(null)
   const [dragActive, setDragActive] = useState(false)
+
+  // Pre-warm ML service when page loads and keep it awake
+  useEffect(() => {
+    const warmUpService = async () => {
+      try {
+        console.log('🔥 Warming up ML service...')
+        await fetch('https://navarasa-ml-service.onrender.com/health')
+        console.log('✅ ML service pinged')
+      } catch (error) {
+        console.log('⚠️ ML service warming up...', error.message)
+      }
+    }
+
+    // Warm up immediately when page loads
+    warmUpService()
+    
+    // Keep pinging every 2 minutes while user is on this page
+    const keepAliveInterval = setInterval(warmUpService, 120000)
+
+    return () => clearInterval(keepAliveInterval)
+  }, [])
 
   const handleDrag = (e) => {
     e.preventDefault()
