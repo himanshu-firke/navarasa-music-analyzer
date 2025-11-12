@@ -105,12 +105,12 @@ const Compare = () => {
           <div className="grid lg:grid-cols-3 gap-6 sm:gap-8">
             {/* Selection Panel */}
             <div className="lg:col-span-1">
-              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 sm:p-6 lg:sticky lg:top-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 sm:p-6 lg:sticky lg:top-4 lg:max-h-[calc(100vh-2rem)] lg:overflow-hidden flex flex-col">
                 <h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
                   Select Songs ({selectedIds.length}/4)
                 </h2>
                 
-                <div className="space-y-2 sm:space-y-3 max-h-[400px] sm:max-h-[600px] overflow-y-auto">
+                <div className="space-y-2 sm:space-y-3 max-h-[400px] sm:max-h-[600px] lg:flex-1 lg:max-h-none overflow-y-auto">
                   {analyses.map((analysis) => {
                     const isSelected = selectedIds.includes(analysis._id)
                     const primaryRasa = NAVARASAS[analysis.primaryEmotion] || {}
@@ -155,14 +155,14 @@ const Compare = () => {
             {/* Comparison Panel */}
             <div className="lg:col-span-2">
               {selectedAnalyses.length === 0 ? (
-                <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-12 text-center">
-                  <TrendingUp className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                  <p className="text-gray-600 dark:text-gray-400 text-lg">
+                <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 sm:p-12 text-center">
+                  <TrendingUp className="w-12 h-12 sm:w-16 sm:h-16 text-gray-400 mx-auto mb-3 sm:mb-4" />
+                  <p className="text-gray-600 dark:text-gray-400 text-base sm:text-lg">
                     Select songs from the left to compare
                   </p>
                 </div>
               ) : (
-                <div className="space-y-6">
+                <div className="space-y-4 sm:space-y-6">
                   {/* Selected Songs Summary */}
                   <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 sm:p-6">
                     <h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
@@ -202,34 +202,36 @@ const Compare = () => {
                     <h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
                       Emotion Distribution Comparison
                     </h2>
-                    <ResponsiveContainer width="100%" height={380}>
-                      <BarChart data={comparisonData} margin={{ top: 20, right: 15, left: 0, bottom: 80 }}>
+                    <div className="w-full h-[320px] sm:h-[380px]">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <BarChart data={comparisonData} margin={{ top: 10, right: 5, left: -10, bottom: 70 }}>
                         <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
                         <XAxis 
                           dataKey="emotion" 
                           stroke="#9ca3af"
-                          tick={{ fill: '#9ca3af', fontSize: 9 }}
-                          angle={-50}
+                          tick={{ fill: '#9ca3af', fontSize: 10 }}
+                          angle={-45}
                           textAnchor="end"
-                          height={90}
+                          height={80}
                           interval={0}
                         />
                         <YAxis 
                           stroke="#9ca3af"
-                          tick={{ fill: '#9ca3af', fontSize: 9 }}
-                          width={35}
+                          tick={{ fill: '#9ca3af', fontSize: 10 }}
+                          width={30}
                         />
                         <Tooltip 
                           contentStyle={{ 
                             backgroundColor: '#1f2937', 
                             border: 'none',
                             borderRadius: '8px',
-                            color: '#fff'
+                            color: '#fff',
+                            fontSize: '12px'
                           }}
                         />
                         <Legend 
-                          wrapperStyle={{ fontSize: '11px' }}
-                          iconSize={10}
+                          wrapperStyle={{ fontSize: '12px' }}
+                          iconSize={12}
                         />
                         {selectedAnalyses.map((analysis, idx) => (
                           <Bar 
@@ -242,6 +244,7 @@ const Compare = () => {
                         ))}
                       </BarChart>
                     </ResponsiveContainer>
+                    </div>
                   </div>
 
                   {/* Radar Chart */}
@@ -249,18 +252,28 @@ const Compare = () => {
                     <h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
                       Emotional Profile Radar
                     </h2>
-                    <ResponsiveContainer width="100%" height={380}>
-                      <RadarChart data={radarData} margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+                    <div className="w-full h-[320px] sm:h-[400px]">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <RadarChart data={radarData} margin={{ top: 10, right: 10, bottom: 10, left: 10 }}>
                         <PolarGrid stroke="#374151" />
                         <PolarAngleAxis 
                           dataKey="emotion"
                           stroke="#9ca3af"
-                          tick={{ fill: '#9ca3af', fontSize: 8 }}
+                          tick={{ fill: '#9ca3af', fontSize: 10 }}
                         />
                         <PolarRadiusAxis 
                           stroke="#9ca3af"
-                          tick={{ fill: '#9ca3af', fontSize: 9 }}
+                          tick={{ fill: '#9ca3af', fontSize: 10 }}
                           angle={90}
+                        />
+                        <Tooltip 
+                          contentStyle={{ 
+                            backgroundColor: '#1f2937', 
+                            border: 'none',
+                            borderRadius: '8px',
+                            color: '#fff',
+                            fontSize: '12px'
+                          }}
                         />
                         {selectedAnalyses.map((analysis, idx) => (
                           <Radar
@@ -273,11 +286,12 @@ const Compare = () => {
                           />
                         ))}
                         <Legend 
-                          wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }}
-                          iconSize={10}
+                          wrapperStyle={{ fontSize: '12px', paddingTop: '10px' }}
+                          iconSize={12}
                         />
                       </RadarChart>
                     </ResponsiveContainer>
+                    </div>
                   </div>
 
                   {/* Dominant Emotions Table */}
@@ -287,7 +301,7 @@ const Compare = () => {
                     </h2>
                     <div className="overflow-x-auto -mx-4 sm:mx-0">
                       <div className="inline-block min-w-full align-middle">
-                      <table className="w-full min-w-[600px]">
+                      <table className="w-full min-w-[500px] sm:min-w-[600px]">
                         <thead>
                           <tr className="border-b border-gray-200 dark:border-gray-700">
                             <th className="text-left py-2 sm:py-3 px-2 sm:px-4 text-gray-700 dark:text-gray-300 font-semibold text-xs sm:text-sm">
@@ -320,8 +334,8 @@ const Compare = () => {
                                       className="w-2 h-2 sm:w-3 sm:h-3 rounded-full flex-shrink-0"
                                       style={{ backgroundColor: colors[idx] }}
                                     />
-                                    <span className="text-gray-900 dark:text-white text-xs sm:text-sm truncate">
-                                      {analysis.filename.substring(0, 20)}...
+                                    <span className="text-gray-900 dark:text-white text-xs sm:text-sm truncate max-w-[100px] sm:max-w-none block">
+                                      {analysis.filename.length > 15 ? `${analysis.filename.substring(0, 15)}...` : analysis.filename}
                                     </span>
                                   </div>
                                 </td>
