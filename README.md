@@ -8,7 +8,8 @@
 
 > An AI-powered web application that analyzes music and predicts emotions based on the nine classical Indian Navarasas (रस).
 
-**Live Demo**: navarasa-music-analyzer.vercel.app 
+**Live Demo**: navarasa-music-analyzer.vercel.app/
+
 **Creator**: Himanshu Ganesh Firke  
 
 ---
