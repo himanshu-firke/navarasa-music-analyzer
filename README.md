@@ -35,7 +35,7 @@
 
 ### Core Functionality
 ✅ **Audio Upload** - Drag-and-drop or browse (MP3, WAV, FLAC, OGG)  
-✅ **AI Analysis** - CNN-based emotion classification  
+✅ **AI Analysis** - YAMNet-based analysis with enhanced rule-based emotion classification  
 ✅ **Visual Results** - Interactive charts and emotion cards  
 ✅ **Confidence Scores** - Percentage breakdown of all 9 emotions  
 ✅ **Cultural Context** - Description of each Navarasa  
@@ -46,7 +46,7 @@
 
 ### Technical Highlights
 - **Real-time Processing**: <10 seconds per song
-- **Accurate ML Model**: >75% classification accuracy
+- **Accurate ML Model**: ~60-70% classification accuracy (YAMNet + audio features + rules)
 - **Beautiful UI**: Modern design with smooth animations
 - **Scalable Architecture**: Microservices (Frontend + Backend + ML)
 - **Cloud Deployed**: Vercel + Render + MongoDB Atlas
@@ -106,29 +106,6 @@ navarasa-music-analyzer/
     ├── FEATURES_DETAILED.md
     └── API_DOCS.md
 ```
-
----
-
-## 🛠️ Tech Stack
-
-| Layer | Technology | Purpose |
-|-------|-----------|---------|
-| **Frontend** | React 18 + Vite | UI Framework |
-| | TailwindCSS | Styling |
-| | Recharts | Data Visualization |
-| | Framer Motion | Animations |
-| | WaveSurfer.js | Audio Waveform |
-| **Backend** | Node.js 20 | Runtime |
-| | Express.js | Web Framework |
-| | MongoDB + Mongoose | Database |
-| | Multer | File Upload |
-| **ML Service** | Python 3.11 | Language |
-| | FastAPI | Web Framework |
-| | TensorFlow + Keras | Deep Learning |
-| | Librosa | Audio Processing |
-| **Deployment** | Vercel | Frontend Hosting |
-| | Render | Backend + ML Hosting |
-| | MongoDB Atlas | Cloud Database |
 
 ---
 
@@ -193,22 +170,19 @@ The ML service extracts these features from uploaded audio:
 - **Chroma** - Pitch classes
 - **RMS Energy** - Loudness
 
-### 2. CNN Model Prediction
-Features are fed into a Convolutional Neural Network:
-```
-Input (MFCC Spectrogram)
-  ↓
-Conv2D + MaxPool (x3 layers)
-  ↓
-Flatten + Dense (256 neurons)
-  ↓
-Output (9 emotions with probabilities)
-```
+### 2. YAMNet + Rule-Based Emotion Prediction
+The system currently uses a hybrid approach:
+- A pre-trained **YAMNet** model is loaded for general audio understanding
+- Traditional features (tempo, energy, brightness, ZCR, etc.) are fed into an **enhanced rule-based classifier**
+- The rule-based logic assigns scores to each of the 9 Navarasa emotions based on these features
+- The highest-scoring emotion becomes the **primary emotion**, with a confidence score derived from relative scores
+
+> 🔬 **Optional (Future) CNN**: A custom CNN model can be trained using `ml-service/train_model.py` and loaded from `models/navarasa_cnn.h5`. When this trained model is present, it automatically becomes the highest-priority predictor, replacing the rule-based path.
 
 ### 3. Result Interpretation
-- **Primary Emotion**: Highest probability emotion
-- **Confidence**: Percentage of primary emotion
-- **Distribution**: All 9 emotions' probabilities
+- **Primary Emotion**: Highest probability/score emotion
+- **Confidence**: Percentage/normalized score of primary emotion
+- **Distribution**: All 9 emotions' scores
 
 ---
 
@@ -295,7 +269,7 @@ vercel --prod
 ## 📈 Performance Metrics
 
 - ⚡ **Analysis Speed**: <10 seconds per song
-- 🎯 **Model Accuracy**: 78% (test dataset)
+- 🎯 **Model Accuracy**: ~60-70% (current YAMNet + rules baseline, varies by dataset)
 - 📱 **Lighthouse Score**: 95+ (Performance)
 - 🌐 **Load Time**: <2 seconds
 
