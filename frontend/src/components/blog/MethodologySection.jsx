@@ -25,22 +25,20 @@ const MethodologySection = () => {
     },
     {
       label: 'C',
-      title: 'Audio Classification with YAMNet',
-      content: `The extracted audio features are processed through Google's YAMNet (Yet Another Mobile Network), a pre-trained 
-      deep learning model for audio event classification. YAMNet, based on the MobileNet_v1 architecture, was trained on the 
-      AudioSet dataset containing millions of YouTube audio clips. The model outputs embeddings and probability scores for 
-      audio events. We leverage YAMNet's embeddings as high-level audio representations, which are then mapped to our nine 
-      Navarasa emotion categories through a custom classification layer built with TensorFlow.`,
-      tags: ['YAMNet', 'TensorFlow', 'Deep Learning', 'Audio Classification', 'Neural Networks']
+      title: 'Rule-Based Emotion Scoring Engine',
+      content: `Instead of a pre-trained deep learning model, the current build relies on an enhanced rule-based classifier. 
+      The Librosa feature vectors feed into weighted heuristics that evaluate tempo ranges, RMS energy levels, spectral 
+      brightness, zero-crossing rate, and chromatic movement. Each Navarasa has curated scoring curves that translate these 
+      acoustic cues into normalized confidence values, providing interpretable and tunable predictions.`,
+      tags: ['Librosa', 'Rule-Based AI', 'Feature Engineering', 'Audio Heuristics']
     },
     {
       label: 'D',
       title: 'Emotion Mapping to Nava Rasa Framework',
-      content: `The YAMNet outputs and extracted audio features are combined and processed through our emotion mapping algorithm. 
-      This algorithm correlates acoustic properties with the nine Nava Rasas based on musicological research. For example, high 
-      tempo and major tonality correlate with Hasya (Joy), while slow tempo with minor keys indicates Karuna (Sadness). The 
-      system uses a weighted scoring mechanism that considers multiple audio features simultaneously, assigning confidence scores 
-      to each of the nine emotions, representing the emotional distribution in the music.`,
+      content: `The weighted scores derived from Librosa features are aligned with insights from musicological research on the 
+      nine Nava Rasas. For example, high tempo and bright timbre correlate with Hasya (Joy), while low tempo with gentle dynamics 
+      indicates Karuna (Sadness). The system evaluates feature combinations simultaneously, assigns confidence scores to each 
+      emotion, and normalizes the distribution so users can see how strongly their track expresses every rasa.`,
       tags: ['Emotion Mapping', 'Nava Rasa', 'Classification Algorithm', 'Cultural Framework']
     },
     {
