@@ -22,16 +22,16 @@ export const ResultsSection = () => (
           <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
             The Navarasa Music Emotion Analyzer has been tested with diverse music files across various genres, 
             languages, and cultural backgrounds. The system successfully analyzed audio files and provided emotion 
-            distributions that aligned well with subjective human assessments. Using the YAMNet pre-trained model 
-            combined with audio feature analysis, the system achieved accuracy rates of 75-85% in identifying the 
-            primary emotion, with higher confidence in songs with distinct emotional characteristics.
+            distributions that aligned well with subjective human assessments. Using Librosa-driven feature extraction 
+            combined with the enhanced rule-based classifier, the system achieved accuracy rates of roughly 60-70% in 
+            identifying the primary emotion, with higher confidence in songs with distinct emotional characteristics.
           </p>
           <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
             User testing revealed high satisfaction with the intuitive interface, real-time analysis capabilities, 
             and comprehensive visualization features. The comparison functionality proved particularly valuable, 
             allowing users to understand emotional differences across their music library. The system performed well 
-            across different audio qualities and formats, demonstrating robustness in real-world scenarios. The YAMNet 
-            model provides strong baseline performance, with future fine-tuning on emotion-specific datasets potentially enhancing accuracy to 85-95%.
+            across different audio qualities and formats, demonstrating robustness in real-world scenarios. Refining the 
+            Librosa feature heuristics or introducing a custom-trained CNN remains a key opportunity for improving accuracy.
           </p>
 
           <BlogImage 
@@ -51,8 +51,8 @@ export const ResultsSection = () => (
 export const FutureScopeSection = () => {
   const futureGoals = [
     {
-      title: 'Fine-tune YAMNet on Emotion Dataset',
-      description: 'Fine-tune the YAMNet model specifically on a large labeled dataset of music files mapped to Navarasa emotions. This would improve accuracy from the current baseline to potentially 85-95%, providing more precise emotion detection tailored to the nine Rasa categories.'
+      title: 'Train Custom Deep Learning Model',
+      description: 'Develop and fine-tune a bespoke CNN or transformer-based classifier on a large labeled dataset of music files mapped to Navarasa emotions. This would improve accuracy beyond the current Librosa + heuristics baseline, providing more precise emotion detection tailored to the nine Rasa categories.'
     },
     {
       title: 'Real-time Streaming Analysis',
@@ -179,10 +179,10 @@ export const ConclusionSection = () => (
           </p>
           <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed">
             Built with a modern full-stack architecture combining React, Node.js, MongoDB, and Python-based ML services, 
-            the application achieves 75-85% accuracy using YAMNet and Librosa. Future enhancements with custom-trained 
-            models could push accuracy even higher. This project opens doors for applications in music recommendation, 
-            therapeutic interventions, cultural preservation, and academic research, bridging the gap between technology 
-            and the timeless emotional language of music.
+            the application currently achieves about 60-70% accuracy using Librosa features with a rule-based classifier. 
+            Future enhancements with custom-trained models could push accuracy even higher. This project opens doors for 
+            applications in music recommendation, therapeutic interventions, cultural preservation, and academic research, 
+            bridging the gap between technology and the timeless emotional language of music.
           </p>
         </div>
       </motion.div>
