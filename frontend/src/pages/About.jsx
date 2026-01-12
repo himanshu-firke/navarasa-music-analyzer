@@ -80,8 +80,8 @@ const About = () => {
               </p>
               <ol className="list-decimal list-inside space-y-2 text-sm sm:text-base text-gray-600 dark:text-gray-400">
                 <li><strong>Feature Extraction:</strong> Extract MFCCs, spectral features, tempo, and energy</li>
-                <li><strong>Pattern Recognition:</strong> YAMNet identifies emotional patterns in the audio</li>
-                <li><strong>Classification:</strong> AI predicts which Navarasa best matches the music</li>
+                <li><strong>Pattern Recognition:</strong> Feature heuristics evaluate tempo, energy, brightness, and texture</li>
+                <li><strong>Classification:</strong> Custom scoring predicts which Navarasa best matches the music</li>
                 <li><strong>Confidence Score:</strong> Provides probability distribution across all 9 emotions</li>
               </ol>
             </div>
