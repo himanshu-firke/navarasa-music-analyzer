@@ -43,8 +43,8 @@ const IntroductionSection = () => {
               Drawing inspiration from the rich tapestry of emotions represented in the Nava Rasas of Indian classical 
               music—Love, Joy, Sadness, Anger, Courage, Fear, Disgust, Wonder, and Peace—our project aims to create an 
               intelligent system that can analyze any music file and identify its emotional composition. By integrating 
-              state-of-the-art machine learning models, audio processing libraries, and modern web technologies, we've 
-              built a comprehensive platform for music emotion analysis.
+              Librosa-based signal processing, interpretable heuristics, and modern web technologies, we've built a 
+              comprehensive platform for music emotion analysis.
             </p>
 
             <p>
@@ -52,17 +52,17 @@ const IntroductionSection = () => {
               objective analysis. Our system provides a dynamic and accessible platform for users to explore the emotional 
               dimensions of their music library. Built with a React frontend for intuitive user interaction, a Node.js 
               backend for robust API services, MongoDB for data persistence, and a Python-based ML service powered by 
-              YAMNet and TensorFlow, the application offers features like emotion distribution visualization, historical 
-              analysis tracking, and multi-song comparison capabilities.
+              Librosa and TensorFlow signal-processing utilities, the application offers features like emotion distribution 
+              visualization, historical analysis tracking, and multi-song comparison capabilities.
             </p>
 
             <p>
               This documentation explores our complete implementation, from audio file processing and feature extraction 
-              to machine learning inference and result visualization. We discuss the architectural decisions, the integration 
-              of the YAMNet model for audio classification, and how we mapped audio features to the nine classical Navarasa 
-              emotions. Additionally, we examine user feedback, system performance, and future enhancements that could further 
-              improve accuracy and user experience. Our ultimate goal is to make emotion analysis in music accessible to 
-              everyone while preserving and promoting the ancient wisdom of Nava Rasa theory.
+              to heuristic scoring and result visualization. We discuss the architectural decisions, the Librosa-driven audio 
+              analysis pipeline, and how we mapped audio features to the nine classical Navarasa emotions. Additionally, we 
+              examine user feedback, system performance, and future enhancements that could further improve accuracy and user 
+              experience. Our ultimate goal is to make emotion analysis in music accessible to everyone while preserving and 
+              promoting the ancient wisdom of Nava Rasa theory.
             </p>
           </div>
         </motion.div>
