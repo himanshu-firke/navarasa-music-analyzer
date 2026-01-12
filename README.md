@@ -35,7 +35,7 @@
 
 ### Core Functionality
 ✅ **Audio Upload** - Drag-and-drop or browse (MP3, WAV, FLAC, OGG)  
-✅ **AI Analysis** - YAMNet-based analysis with enhanced rule-based emotion classification  
+✅ **AI Analysis** - Librosa-driven feature extraction with enhanced rule-based emotion classification  
 ✅ **Visual Results** - Interactive charts and emotion cards  
 ✅ **Confidence Scores** - Percentage breakdown of all 9 emotions  
 ✅ **Cultural Context** - Description of each Navarasa  
@@ -46,7 +46,7 @@
 
 ### Technical Highlights
 - **Real-time Processing**: <10 seconds per song
-- **Accurate ML Model**: ~60-70% classification accuracy (YAMNet + audio features + rules)
+- **Accurate Baseline**: ~60-70% classification accuracy (Librosa features + rule-based heuristics)
 - **Beautiful UI**: Modern design with smooth animations
 - **Scalable Architecture**: Microservices (Frontend + Backend + ML)
 - **Cloud Deployed**: Vercel + Render + MongoDB Atlas
@@ -170,11 +170,11 @@ The ML service extracts these features from uploaded audio:
 - **Chroma** - Pitch classes
 - **RMS Energy** - Loudness
 
-### 2. YAMNet + Rule-Based Emotion Prediction
-The system currently uses a hybrid approach:
-- A pre-trained **YAMNet** model is loaded for general audio understanding
-- Traditional features (tempo, energy, brightness, ZCR, etc.) are fed into an **enhanced rule-based classifier**
-- The rule-based logic assigns scores to each of the 9 Navarasa emotions based on these features
+### 2. Librosa Features + Rule-Based Emotion Prediction
+The system currently uses an interpretable pipeline:
+- Librosa extracts tempo, energy, brightness, MFCCs, ZCR, chroma, and RMS features
+- An enhanced rule-based classifier evaluates weighted heuristics for each feature range
+- Scores are assigned to all 9 Navarasa emotions and normalized into a probability distribution
 - The highest-scoring emotion becomes the **primary emotion**, with a confidence score derived from relative scores
 
 > 🔬 **Optional (Future) CNN**: A custom CNN model can be trained using `ml-service/train_model.py` and loaded from `models/navarasa_cnn.h5`. When this trained model is present, it automatically becomes the highest-priority predictor, replacing the rule-based path.
@@ -269,7 +269,7 @@ vercel --prod
 ## 📈 Performance Metrics
 
 - ⚡ **Analysis Speed**: <10 seconds per song
-- 🎯 **Model Accuracy**: ~60-70% (current YAMNet + rules baseline, varies by dataset)
+- 🎯 **Model Accuracy**: ~60-70% (current Librosa + rule-based baseline, varies by dataset)
 - 📱 **Lighthouse Score**: 95+ (Performance)
 - 🌐 **Load Time**: <2 seconds
 
