@@ -21,7 +21,7 @@ const Home = () => {
     {
       icon: Sparkles,
       title: 'AI-Powered Analysis',
-      description: 'YAMNet deep learning model trained on thousands of audio samples for accurate emotion detection',
+      description: 'Librosa-powered audio feature extraction analyzes timbre, tempo, and energy for accurate emotion detection',
     },
     {
       icon: Globe,
