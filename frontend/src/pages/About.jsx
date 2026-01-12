@@ -75,8 +75,8 @@ const About = () => {
                 How Our AI Analyzes Music
               </h2>
               <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-3 sm:mb-4">
-                Our system uses <strong>YAMNet (Yet Another Mobile Network)</strong>, a deep learning model trained to recognize 
-                patterns in audio that correspond to each Navarasa:
+                Our system uses <strong>Librosa-powered audio feature extraction</strong> plus a tuned rule-based classifier to
+                recognize patterns in music that correspond to each Navarasa:
               </p>
               <ol className="list-decimal list-inside space-y-2 text-sm sm:text-base text-gray-600 dark:text-gray-400">
                 <li><strong>Feature Extraction:</strong> Extract MFCCs, spectral features, tempo, and energy</li>
