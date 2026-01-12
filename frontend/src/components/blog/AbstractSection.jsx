@@ -22,9 +22,9 @@ const AbstractSection = () => {
               Music has the extraordinary ability to evoke deep emotions and connect with listeners on a profound level. 
               In this project, we present <strong className="text-pink-600 dark:text-pink-400">"Navarasa Music Emotion Analyzer,"</strong>{' '}
               an innovative web application that analyzes music files to identify and quantify the emotions they evoke. 
-              Using advanced machine learning techniques, specifically <strong>Google's YAMNet model</strong> for audio 
-              classification, <strong>Librosa</strong> for audio feature extraction, and <strong>TensorFlow</strong> for 
-              deep learning inference, we map musical characteristics to emotional states.
+              Using <strong>Librosa</strong> for high-resolution audio feature extraction together with a finely tuned 
+              rule-based scoring engine, we map musical characteristics to emotional states without relying on opaque 
+              black-box models.
             </p>
             <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed">
               Based on the Nava Rasas from Indian classical music theory, our system analyzes uploaded audio files and 
